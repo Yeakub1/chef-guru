@@ -8,6 +8,8 @@ import Home from './components/Home/Home/Home';
 import Blog from './components/Home/Blog/Blog';
 import Login from './components/User/Login/Login';
 import Registerion from './components/User/Registerion/Registerion';
+import ChefDetails from './components/Layout/ChefDetails';
+import Chef from './components/Pages/Chef/Chef';
 
 const router = createBrowserRouter([
   {
@@ -30,8 +32,18 @@ const router = createBrowserRouter([
         path: '/reg',
         element: <Login></Login>
       },
-    ]
+    ], 
   },
+  {
+    path: 'chef',
+    element: <ChefDetails></ChefDetails>,
+    children: [
+      {
+        path: ':id',
+        element: <Chef></Chef>
+      }
+    ]
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
