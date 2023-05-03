@@ -10,6 +10,7 @@ import Login from './components/User/Login/Login';
 import Registerion from './components/User/Registerion/Registerion';
 import ChefDetails from './components/Layout/ChefDetails';
 import Chef from './components/Home/Chef/Chef';
+import UserDetails from './components/Pages/UserDetails/UserDetails';
 
 
 const router = createBrowserRouter([
@@ -24,8 +25,6 @@ const router = createBrowserRouter([
       {
         path: "/card/:id",
         element: <Chef></Chef>,
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/card/${params.id}`),
       },
       {
         path: "/blog",
@@ -42,12 +41,14 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "chef",
+    path: "/news",
     element: <ChefDetails></ChefDetails>,
     children: [
       {
         path: ":id",
-        element: <Chef></Chef>,
+        element: <UserDetails></UserDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/news/${params.id}`),
       },
     ],
   },
