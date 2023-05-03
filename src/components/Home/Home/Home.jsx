@@ -1,5 +1,4 @@
 import React from "react";
-import './Home.css'
 import Chef from "../Chef/Chef";
 import bg from '../../../assets/header.jpg'
 import bg2 from '../../../assets/banner.jpg'
