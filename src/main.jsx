@@ -9,7 +9,8 @@ import Blog from './components/Home/Blog/Blog';
 import Login from './components/User/Login/Login';
 import Registerion from './components/User/Registerion/Registerion';
 import ChefDetails from './components/Layout/ChefDetails';
-import Chef from './components/Pages/Chef/Chef';
+import Chef from './components/Home/Chef/Chef';
+
 
 const router = createBrowserRouter([
   {
@@ -17,33 +18,39 @@ const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: '/',
-        element: <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path: '/blog',
-        element: <Blog></Blog>
+        path: "/card/:id",
+        element: <Chef></Chef>,
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/card/${params.id}`),
       },
       {
-        path: '/login',
-        element: <Registerion></Registerion>
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
-        path: '/reg',
-        element: <Login></Login>
+        path: "/login",
+        element: <Registerion></Registerion>,
       },
-    ], 
+      {
+        path: "/reg",
+        element: <Login></Login>,
+      },
+    ],
   },
   {
-    path: 'chef',
+    path: "chef",
     element: <ChefDetails></ChefDetails>,
     children: [
       {
-        path: ':id',
-        element: <Chef></Chef>
-      }
-    ]
-  }
+        path: ":id",
+        element: <Chef></Chef>,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
