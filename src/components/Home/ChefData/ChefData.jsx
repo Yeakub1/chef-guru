@@ -7,7 +7,7 @@ const ChefData = ({ chef }) => {
   const { _id, name, Experience, Items, like, img } = chef;
   return (
     <Container>
-      <div className="d-flex ">
+      <div className="">
         <div style={{ width: "18rem" }}>
           <Card.Img variant="top" src={img} />
           <Card.Body className="text-center">
@@ -30,7 +30,6 @@ const ChefData = ({ chef }) => {
             </Card.Text>
           </Card.Body>
         </div>
-        
       </div>
     </Container>
   );

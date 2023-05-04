@@ -11,12 +11,14 @@ import Registerion from './components/User/Registerion/Registerion';
 import ChefDetails from './components/Layout/ChefDetails';
 import Chef from './components/Home/Chef/Chef';
 import UserDetails from './components/Pages/UserDetails/UserDetails';
+import ErrorPage from './components/ErrorPage';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
