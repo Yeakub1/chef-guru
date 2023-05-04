@@ -7,6 +7,7 @@ import {
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -19,7 +20,7 @@ const Footer = () => {
             </div>
             {/* Left */}
             {/* Right */}
-            <div className='mb-4'>
+            <div className="mb-4">
               <a href="" className="me-4 link-secondary">
                 <FaFacebook />
               </a>
@@ -35,7 +36,6 @@ const Footer = () => {
               <a href="" className="me-4 link-secondary">
                 <FaInstagram />
               </a>
-              
             </div>
             {/* Right */}
           </section>
@@ -64,24 +64,33 @@ const Footer = () => {
                   {/* Links */}
                   <h6 className="text-uppercase fw-bold mb-4">Products</h6>
                   <p>
-                    <a href="#!" className="text-reset text-decoration-none">
-                      Angular
-                    </a>
+                    <Link to="/" className="text-reset text-decoration-none">
+                      Home
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset text-decoration-none">
-                      React
-                    </a>
+                    <Link
+                      to="/blog"
+                      className="text-reset text-decoration-none"
+                    >
+                      Blog
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset text-decoration-none">
-                      Vue
-                    </a>
+                    <Link
+                      to="/login"
+                      className="text-reset text-decoration-none"
+                    >
+                      Login
+                    </Link>
                   </p>
                   <p>
-                    <a href="#!" className="text-reset text-decoration-none">
-                      Laravel
-                    </a>
+                    <Link
+                      to="/registion"
+                      className="text-reset text-decoration-none"
+                    >
+                      Register
+                    </Link>
                   </p>
                 </div>
                 {/* Grid column */}

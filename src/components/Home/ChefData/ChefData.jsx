@@ -8,7 +8,7 @@ const ChefData = ({ chef }) => {
   return (
     <Container>
       <div className="">
-        <div className="mt-5 " style={{ width: "18rem" }}>
+        <div className="mt-5 row " style={{ width: "18rem" }}>
           <Card.Img variant="top" src={img} />
           <Card.Body className="text-center">
             <Card.Title>{name}</Card.Title>

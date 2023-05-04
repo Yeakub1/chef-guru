@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AtuhContext } from "../providers/AuthProviders";
 
 
 const Registion = () => {
-    const { creatUser } = useContext(AtuhContext);
+  const { creatUser } = useContext(AtuhContext);
+  const [errors, setErrors] = useState("");
 
     const handleRegister = event => {
         event.preventDefault();
@@ -14,11 +15,16 @@ const Registion = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photo = form.photo.value;
-        console.log(name, email, password, photo);
+      console.log(name, email, password, photo);
+           if (password.length < 6) {
+      setErrors('Your Password Must be characters or longer');
+      return;
+    }
 
         creatUser(email, password)
             .then(result => {
-                const createdUser = result.user;
+              const createdUser = result.user;
+              event.target.reset();
                 console.log(createdUser);
             })
             .catch(error => {
@@ -83,6 +89,7 @@ const Registion = () => {
             Login Now
           </Link>
         </p>
+        <p className="text-danger">{errors}</p>
       </Form>
     </div>
   );

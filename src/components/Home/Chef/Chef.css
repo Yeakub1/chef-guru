@@ -2,3 +2,10 @@
  display: grid;
  grid-template-columns: repeat(3,1fr);
 }
+@media (max-width: 576px) { 
+    .chef-card{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+ }

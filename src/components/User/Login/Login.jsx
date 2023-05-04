@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AtuhContext } from '../../providers/AuthProviders';
@@ -6,6 +6,7 @@ import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from
 import app from '../../firebase/firebase.config';
 
 const Login = () => {
+  const [errors, setErrors] = useState('');
   const { sigIn } = useContext(AtuhContext);
   const neviget = useNavigate();
   const location = useLocation();
@@ -46,6 +47,8 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
+   
+
     sigIn(email, password)
       .then(result => {
         const logedUser = result.user;
@@ -54,7 +57,15 @@ const Login = () => {
       })
       .catch(error => {
       console.log(error);
-    })
+      })
+    
+     if (password !== confirm) {
+       setErrors("Your Password did not match");
+       return;
+     } else if (password.length < 6) {
+       setErrors("Your Password Must be characters or longer");
+       return;
+     }
   }
     return (
       <div className="w-50 mx-auto">
@@ -103,6 +114,7 @@ const Login = () => {
               Register here
             </Link>
           </p>
+          <p className="text-danger">{errors}</p>
         </Form>
       </div>
     );

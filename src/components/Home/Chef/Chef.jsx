@@ -15,7 +15,7 @@ const Chef = () => {
   return (
     <Container className="">
       <h2 className="text-center mb-5 mt-5">Chef Team</h2>
-      <div className="chef-card">
+      <div className=" chef-card ">
         {servicesData.map((chef) => (
           <ChefData key={chef._id} chef={chef}></ChefData>
         ))}
