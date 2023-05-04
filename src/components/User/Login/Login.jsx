@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AtuhContext } from '../../providers/AuthProviders';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../../firebase/firebase.config';
 
 const Login = () => {
   const { sigIn } = useContext(AtuhContext);
@@ -9,6 +11,33 @@ const Login = () => {
   const location = useLocation();
   console.log('login page location', location);
   const from = location.state?.from?.pathname || '/';
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  const gitProvider = new GithubAuthProvider();
+
+
+
+  const handleGoogleSigin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const logedUser = result.user;
+        console.log(logedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const handleGithubLogin = () => {
+    signInWithPopup(auth, gitProvider)
+      .then((result) => {
+        const logedUser = result.user;
+        console.log(logedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const handleLogin = event => {
     event.preventDefault();
@@ -57,6 +86,17 @@ const Login = () => {
           <Button variant="primary" type="submit">
             Login
           </Button>
+          <div className="mt-4 mx-auto">
+            <Button onClick={handleGoogleSigin} variant="success">
+              Login Width Google
+            </Button>
+          </div>
+          <div className="mt-2 mx-auto">
+            <Button onClick={handleGithubLogin} variant="dark">
+              Login Width Github
+            </Button>
+          </div>
+
           <p>
             Don't have an account?{" "}
             <Link to="/registion" className="text-decoration-none mt-5">
