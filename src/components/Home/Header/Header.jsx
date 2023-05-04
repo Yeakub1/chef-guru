@@ -7,8 +7,8 @@ const Header = () => {
     return (
       <Navbar collapseOnSelect expand="lg" bg="" variant="light">
         <Container>
-          <Navbar.Brand >
-            <Link to='/'>
+          <Navbar.Brand>
+            <Link to="/">
               {" "}
               <h6>
                 <img src={logo} alt="" width={50} />
@@ -36,8 +36,8 @@ const Header = () => {
                 </Link>
               </Nav.Link>
               <Nav.Link>
-                <Link className="text-decoration-none" to="/reg">
-                  
+                <Link className="text-decoration-none" to="/registion">
+                  reg
                 </Link>
               </Nav.Link>
             </Nav>

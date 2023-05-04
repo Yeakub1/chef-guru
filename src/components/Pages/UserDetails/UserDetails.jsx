@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
-import {  useLoaderData } from 'react-router-dom';
+import {  Link, useLoaderData } from 'react-router-dom';
 import { AiFillLike } from "react-icons/ai";
 
 
@@ -69,6 +69,14 @@ const UserDetails = () => {
             </Card>
           </div>
         </div>
+        <Link
+          to="/"
+          className="px-8 py-3 font-semibold rounded bg-cyan-200 text-gray-900"
+        >
+          <button className="px-4 py-2 bg-primary border-0 mb-5">
+            Back to homepage
+          </button>
+        </Link>
       </Container>
     );
 };
