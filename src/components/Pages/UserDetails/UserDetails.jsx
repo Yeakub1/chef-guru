@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import {  Link, useLoaderData } from 'react-router-dom';
 import { AiFillLike } from "react-icons/ai";
+ import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 
 
 const UserDetails = () => {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
     const chef = useLoaderData();
     const {
       name,
@@ -19,7 +22,16 @@ const UserDetails = () => {
       RecipeName,
       foodItemsd,
       reting,
-    } = chef;
+  } = chef;
+  
+
+  const handleClick = () => {
+    setButtonDisabled(true);
+    toast.success("Button clicked !", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+  
     return (
       <Container>
         <h4 className="text-center mt-5 mb-5 bg-warning p-5">Chef details </h4>
@@ -64,7 +76,16 @@ const UserDetails = () => {
                 <Card.Text>
                   <span className="text-primary ">Reting : </span> {reting}
                 </Card.Text>
-                <Button variant="primary">Favorite</Button>
+                <div className="">
+                  <Button
+                    onClick={handleClick}
+                    disabled={buttonDisabled}
+                    variant="primary"
+                  >
+                    Favorite
+                  </Button>
+                  <ToastContainer />
+                </div>
               </Card.Body>
             </Card>
           </div>
