@@ -12,6 +12,8 @@ import Chef from './components/Home/Chef/Chef';
 import UserDetails from './components/Pages/UserDetails/UserDetails';
 import ErrorPage from './components/ErrorPage';
 import Registion from './components/Registion/Registion';
+import AuthProviders from './components/providers/AuthProviders';
+import PrivateRoute from './components/User/PaivateRoute/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -32,15 +34,15 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog></Blog>,
       },
-      
+
       {
         path: "/login",
         element: <Login></Login>,
       },
       {
-        path: '/registion',
-        element : <Registion></Registion>
-      }
+        path: "/registion",
+        element: <Registion></Registion>,
+      },
     ],
   },
   {
@@ -49,7 +51,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: ":id",
-        element: <UserDetails></UserDetails>,
+        element: (
+          <PrivateRoute>
+            <UserDetails></UserDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/news/${params.id}`),
       },
@@ -59,6 +65,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </React.StrictMode>
 );

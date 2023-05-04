@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { AtuhContext } from "../providers/AuthProviders";
+
 
 const Registion = () => {
+    const { creatUser } = useContext(AtuhContext);
+
+    const handleRegister = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photo = form.photo.value;
+        console.log(name, email, password, photo);
+
+        creatUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+            })
+            .catch(error => {
+            console.log(error);
+        })
+    }
+
   return (
     <div className="w-50 mx-auto">
       <h1 className="text-center ">Sign Up</h1>
-      <Form>
+      <Form onSubmit={handleRegister}>
         <Form.Group className="mb-3 " controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -20,8 +44,8 @@ const Registion = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             className="w-50"
-            type="email"
             name="email"
+            type="email"
             required
             placeholder="Enter email"
           />
@@ -41,8 +65,8 @@ const Registion = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             className="w-50"
-            type="password"
             name="password"
+            type="password"
             required
             placeholder="Password"
           />
@@ -53,6 +77,12 @@ const Registion = () => {
         <Button variant="primary" type="submit">
           Registration
         </Button>
+        <p>
+          already have an account{" "}
+          <Link to="/login" className="text-decoration-none mt-5">
+            Login Now
+          </Link>
+        </p>
       </Form>
     </div>
   );

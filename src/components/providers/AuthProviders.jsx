@@ -1,24 +1,52 @@
-import React, { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
-export const AuthContext = createContext(null)
+export const AtuhContext = createContext(null)
 
 const auth = getAuth(app)
 
-const AuthProviders = ({children}) => {
-    const user = null;
+const AuthProviders = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loding, setLoding] = useState(true)
+    
     const creatUser = (email, password) => {
+        setLoding(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
-    const authInfo = {
-        user,
-        creatUser
+
+    const sigIn = (email, password) => {
+        setLoding(true)
+        return signInWithEmailAndPassword(auth, email, password);
     }
+
+    const logOut = () => {
+        setLoding(true)
+        return signOut(auth);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, loggedUser => {
+            console.log('inside loged user', loggedUser);
+            setUser(loggedUser);
+            setLoding(false)
+        })
+        return () => {
+            unsubscribe();
+        }
+    },[])
+
+    const authInfo = {
+      user,
+      creatUser,
+      sigIn,
+      logOut,
+      loding
+    };
     return (
-        <AuthContext.Provider value={authInfo}>
+        <AtuhContext.Provider value={authInfo}>
             {children}
-        </AuthContext.Provider>
+        </AtuhContext.Provider>
     );
 };
 

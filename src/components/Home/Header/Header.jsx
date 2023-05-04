@@ -1,9 +1,17 @@
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../../../assets/logo.png'
 import { Link } from 'react-router-dom';
+import { AtuhContext } from '../../providers/AuthProviders';
 
 const Header = () => {
+  const { user, logOut } = useContext(AtuhContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then()
+    .catch(error=> console.log(error))
+  }
     return (
       <Navbar collapseOnSelect expand="lg" bg="" variant="light">
         <Container>
@@ -31,13 +39,15 @@ const Header = () => {
             </Nav>
             <Nav>
               <Nav.Link>
-                <Link className="text-decoration-none" to="/login">
+                {user ? 
+                  <Button onClick={handleLogOut}>LogOut</Button> :
+                  <Link className="text-decoration-none" to="/login">
                   Login
-                </Link>
+                </Link>}
               </Nav.Link>
               <Nav.Link>
                 <Link className="text-decoration-none" to="/registion">
-                  reg
+                 
                 </Link>
               </Nav.Link>
             </Nav>
