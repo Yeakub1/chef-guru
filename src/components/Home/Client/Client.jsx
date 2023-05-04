@@ -18,7 +18,7 @@ const Client = () => {
               hidden in the middle of text. All the Lorem Ipsum generators on
               the Internet tend to repeat predefined chunks as necessary
             </p>
-            <button className="px-4 py-2 bg-primary text-white">
+            <button className="px-4 py-2 bg-primary text-white border-0">
               Read More
             </button>
           </div>
