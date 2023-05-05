@@ -7,7 +7,7 @@ const Chef = () => {
     const [servicesData, setServicesData] = useState([]);
 
     useEffect(() => {
-      fetch("http://localhost:5000/card/")
+      fetch("https://the-news-dragon-server-yeakub1.vercel.app/card")
         .then((response) => response.json())
         .then((data) => setServicesData(data));
     }, []);
